@@ -1,0 +1,520 @@
+%%
+%% John Papandriopoulos
+%% Copyright (C) 2006 John Papandriopoulos.  All Rights Reserved.
+%%
+%% CHANGELOG
+%%
+%% 20060523: First version
+%%
+
+\ProvidesPackage{style/uomthesis}
+
+%%
+%% Options
+%%
+
+% Uncomment to use small caps in titles
+%\newcommand{\smallcapstitle}{\sc}
+% Uncomment NOT to use small caps in titles
+\newcommand{\smallcapstitle}{}
+
+
+%%
+%% Fonts
+%%
+%%   See: http://www.math.uiuc.edu/~hartke/computer/latex/survey/survey.html
+%%
+
+%\usepackage{txfonts}
+%\usepackage{antpolt}**
+%\usepackage{utopia}
+%\usepackage[garamond]{mathdesign}
+%\usepackage[utopia]{mathdesign}
+%\usepackage{mathpazo}
+%\usepackage{chancery}
+\usepackage{palatino}
+\usepackage{mathpazo}
+
+
+%%
+%% Margins
+%%
+%%  From: http://www.sgs.unimelb.edu.au/phd/enrolcandid/phdhbk/phdthesis/format.html
+%%   
+%%   International Standard Paper Size A4 (297 x 210mm) should be used.
+%%   
+%%   The typing should be 1.5 spaced and presented in a clear and legible font and
+%%   would normally be expected to be double-sided.
+%%   
+%%   Left and right margins should be no less than 30mm and page numbers should appear
+%%   inside the margins. 
+%%
+
+% A4 paper
+\paperwidth 210mm
+\paperheight 297mm
+
+% Binding margin
+\newlength{\bindmargin}
+	\addtolength{\bindmargin}{3.5cm}
+
+% Other margin
+\newlength{\othermargin}
+	\addtolength{\othermargin}{2.5cm}
+
+% Header height
+\headheight 14pt
+
+% We don't want any margin for headers
+%\topmargin 0pt
+
+% We don't wany any par margins
+\marginparwidth 0pt
+\marginparsep 0pt
+
+% Text width: paper width - bind margin - other margin
+\textwidth \paperwidth
+	\addtolength{\textwidth}{-\bindmargin}
+	\addtolength{\textwidth}{-\othermargin}
+
+% Text height
+\textheight \paperheight
+	\addtolength{\textheight}{-1in}
+	\addtolength{\textheight}{-\headsep}
+	\addtolength{\textheight}{-\footskip}
+	\addtolength{\textheight}{-\headheight}
+	\addtolength{\textheight}{-\topmargin}
+	\addtolength{\textheight}{-\voffset}
+	\addtolength{\textheight}{-1in}
+
+% Set the margins
+\evensidemargin \paperwidth
+	\addtolength{\evensidemargin}{-\textwidth}
+	\addtolength{\evensidemargin}{-\bindmargin}
+	\addtolength{\evensidemargin}{-1in}
+
+\oddsidemargin \paperwidth
+	\addtolength{\oddsidemargin}{-\textwidth}
+	\addtolength{\oddsidemargin}{-\othermargin}
+	\addtolength{\oddsidemargin}{-1in}
+
+%%
+%% Other Packages
+%%
+
+% For roman numeral lists
+\usepackage{enumerate}
+
+% For double spacing
+\usepackage{setspace}
+%\doublespacing
+\setstretch{1.5}
+
+% Header style
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+%%
+%% Header and footer
+%%
+
+% Override the chapter and section header markings
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection~~#1}}
+
+% No headings for the front matter; only a footer page number
+\newcommand{\frontmatterheadings}{
+	\pagestyle{plain}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+	% To maintain the same size as the main matter...
+	\addtolength{\headheight}{0.5pt}
+	\fancypagestyle{plain}{%
+		\fancyhead{}
+		% Add in the page number to the footer on this page only
+		\fancyfoot{}
+		\fancyfoot[CF]{\thepage}
+		\renewcommand{\headrulewidth}{0pt}
+	}
+}
+
+% Fancy headings for the main matter
+\newcommand{\mainmatterheadings}{
+	\fancyhf{}
+	\fancyhead[LE,RO]{\thepage}
+	\fancyhead[LO]{\rightmark}
+	\fancyhead[RE]{\leftmark}
+	\renewcommand{\headrulewidth}{0.5pt}
+	\renewcommand{\footrulewidth}{0pt}
+	\addtolength{\headheight}{0.5pt}
+	\fancypagestyle{plain}{%
+		\fancyhead{}
+		% Add in the page number to the footer on this page only
+		\fancyfoot{}
+		\fancyfoot[CF]{\thepage}
+		\renewcommand{\headrulewidth}{0pt}
+	}
+}
+
+
+%%
+%% Custom commands
+%%
+
+% Set the department
+\newcommand{\department}[1]{\def\@department{#1}}
+
+% Set the university
+\newcommand{\university}[1]{\def\@university{#1}}
+
+% Set the university logo file
+%\newcommand{\univlogofile}[1]{\def\@univlogofile{#1}}
+
+% Set the date of submission
+\newcommand{\submissionmonth}[1]{\def\@submissionmonth{#1}}
+\newcommand{\submissionyear}[1]{\def\@submissionyear{#1}}
+
+% 80 word summary+
+\newcommand{\summary}[1]{\def\@summary{#1}}
+
+%%
+%% Title page and copyright
+%%
+
+\renewcommand\maketitle{%
+   \newpage
+	{
+		% Title page has no headings
+		\thispagestyle{empty}
+		% Call this page 1
+		\setcounter{page}{1}
+		% Use single spacing
+		\singlespacing
+			\let\footnotesize\small
+			\let\footnoterule\relax
+		   \null\vfil
+			\begin{center}
+				\large
+				{\Huge\bfseries\smallcapstitle {\@title} \par}
+					\vspace{1cm}
+				{\Large
+					{\@author} \par
+						\vspace{3cm}
+					Submitted in total fulfilment of the requirements of the degree of \par
+					\bigskip
+					{\LARGE Doctor of Philosophy} \par
+				}
+					\vspace{2cm}
+				%\includegraphics[height=3cm]{\@univlogofile} \par
+					\bigskip
+				{\@department} \par
+				{\@university} \par
+					\vspace{2cm}
+				{\@submissionmonth} {\@submissionyear} \par
+					\vspace{1cm}
+				\ifx\archivalpapernote\undefined
+					{\footnotesize
+						Produced on archival quality paper.
+					}
+			   \else
+					{\footnotesize
+						% Don't print it, but reserve the space...
+						\phantom{Produced on archival quality paper.}
+					}
+				\fi
+			\end{center}
+			\vfil\null
+	}
+
+	%%
+	%% Copyright notice
+	%%
+   \newpage
+	{
+		% Title page has no headings
+		\thispagestyle{empty}
+		% Use single spacing
+		\singlespacing
+			\vfill\null
+		   \vspace{0.75\textheight}
+			\begin{center}
+				\Large
+					Copyright \copyright\ {\@submissionyear}\ {\@author} \par
+			\end{center}
+			\bigskip
+				All rights reserved.  No part of the publication may be reproduced in any form by print, photoprint, microfilm or any other means without written permission from the author.
+			\vfil\null
+	}
+	
+	% Start the footnote counter
+	\setcounter{footnote}{0}
+}
+
+
+%%
+%% Dedication
+%%
+
+\newenvironment{dedication}{%
+	\cleardoublepage
+	% Just the page number...
+	\thispagestyle{plain}
+	\null\vfil
+	\begin{center}
+		\large\itshape
+}{%
+	\end{center}
+	\vfil\null
+	\newpage
+}
+
+
+%%
+%% Abstract
+%%
+
+\newenvironment{abstract}{%
+	\chapter*{Abstract}
+}{%
+	\vfill\null
+}
+
+
+%%
+%% Preface
+%%
+
+\newenvironment{preface}{%
+	\chapter*{Preface}
+}{%
+	\vfill\null
+}
+
+
+%%
+%% Publication List
+%%
+
+\newenvironment{publications}{%
+	\chapter*{Publications}
+}{%
+	\vfill\null
+}
+\newcommand{\journalpaperlist}{\subsection*{Journal Papers}}
+\newcommand{\conferencepaperlist}{\subsection*{Conference Papers}}
+\newcommand{\patentlist}{\subsection*{Patents}}
+\newcommand{\patentlistsingleitem}{\subsection*{Patent}}
+
+%%
+%% Acknowledgements
+%%
+
+\newenvironment{acknowledgements}{%
+	\chapter*{Acknowledgements}
+}{%
+	\vfill\null
+}
+
+
+%%
+%% Declaration
+%%
+%%  See: http://www.sgs.unimelb.edu.au/phd/enrolcandid/phdhbk/phdthesis/order.html
+%%
+
+\newcommand{\makedeclaration}{%
+	\chapter*{Declaration}
+	
+	This is to certify that
+	\begin{enumerate}
+		%\item the thesis comprises only my original work towards the PhD except where indicated in the Preface,
+		\item the thesis comprises only my original work towards the PhD,
+		\item due acknowledgement has been made in the text to all other material used,
+		\item the thesis is less than 100,000 words in length, exclusive of tables, maps, bibliographies and appendices. 
+	\end{enumerate}
+	\vspace{5cm}
+	% Ideally, this length should be changed so the line
+	% is symmetrically spaced with the text beneath it.
+	\underline{\hspace{7.52cm}} \par
+	{\@author}, {\@submissionmonth} {\@submissionyear} \par
+	\vfill\null
+}
+
+
+%%
+%% Chapter synopsis
+%%
+
+\newenvironment{synopsis}{%
+	\begin{center}
+		\begin{minipage}{0.95\textwidth}
+			%\singlespacing%
+			\setlength{\parindent}{1em}
+			\itshape%
+			\small%
+}{%
+		\end{minipage}
+	\end{center}
+}
+
+
+
+
+%%
+%% Chapter headings
+%%
+%%   Altered from book.cls:
+%%			* Centered title
+%%			* Title in small caps
+%%			* Single spacing title
+%%			* Reduced top vertical space
+%%			* Reduced spacing between "Chapter X" and chapter title
+%%
+
+\def\@makechapterhead#1{%
+  \vspace*{25\p@}%
+  {\parindent \z@ \raggedright \normalfont \singlespacing
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\centering\smallcapstitle \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 10\p@
+      \fi
+    \fi
+    \interlinepenalty\@M
+    \Huge\smallcapstitle #1\par\nobreak
+    \vskip 40\p@
+  }%
+}
+
+%%
+%%   Altered from book.cls:
+%%			* Centered title
+%%			* Title in small caps
+%%
+
+\def\@makeschapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge\centering\smallcapstitle #1\par\nobreak
+    \vskip 40\p@
+  }%
+}
+
+
+%%
+%% Bibliography
+%%
+%%   Altered from book.cls:
+%%			* Removed chapter command
+%%			* Removed header marking commands
+%%
+
+\renewenvironment{thebibliography}[1]
+     {%\chapter*{\bibname}%
+      %\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+
+
+%%
+%% Section headings
+%%
+%%   Altered from book.cls:
+%%			* Single spacing title
+%%
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\singlespacing\normalfont\Large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\singlespacing\normalfont\large\bfseries}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\singlespacing\normalfont\normalsize\bfseries}}
+
+
+%%
+%% Make blank pages blank, and without a heading
+%%
+%%   This was taken from the fancyhdr package documentation.
+%%
+
+\makeatletter
+	\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+	\hbox{}
+	\vspace*{\fill}
+	\ifx\markblankpages\undefined
+		\begin{center}
+			This page intentionally left blank.
+		\end{center}
+	\fi
+	\vspace{\fill}
+	\thispagestyle{empty}
+	\newpage
+	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+%%
+%% Part delimiters
+%%
+%%   Altered from book.cls:
+%%			* Centered title
+%%			* Title in small caps
+%%			* Single spacing title
+%%			* Removed bold face type
+%%			* Added header
+%%
+
+\makeatletter
+\def\@part[#1]#2{%
+    \ifnum \c@secnumdepth >-2\relax
+      \refstepcounter{part}%
+      \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+    \else
+      \addcontentsline{toc}{part}{#1}%
+    \fi
+    % Add in the header
+    \markboth{Part~\thepart:~#1}{}%
+    {\centering
+     \interlinepenalty \@M
+     \normalfont\singlespacing
+     \ifnum \c@secnumdepth >-2\relax
+       \huge\centering\smallcapstitle \partname\nobreakspace\thepart
+       \par
+       \vskip 20\p@
+     \fi
+     \Huge\smallcapstitle #2\par}%
+    \@endpart}
+\makeatother
+
+%%
+%% Section command for use in a "part-section"
+%%
+
+\newcommand{\psection}[1]{%
+	% The usual section
+	\section*{#1}%
+	% Set up the header to be the title name
+   \markright{#1}%
+}

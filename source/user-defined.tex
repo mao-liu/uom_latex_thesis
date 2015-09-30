@@ -1,0 +1,148 @@
+%%
+%% VERSION HISTORY
+%%    22 May 2006 - John Papandriopoulos - Original version
+%%    12 Jul 2007 - John Papandriopoulos - Converted into template
+%%
+
+%%
+%% Custom Hyphenations
+%%
+
+\hyphenation{cross-talk}
+
+%%
+%% Sample custom-configuration
+%%
+%%   You are encouraged to modify the following section with any of your
+%%   own custom commands, packages, etc.
+%%
+
+%error 'You should modify this section and remove this error.'
+
+% for URLs
+\usepackage{url}
+
+% AMS packages
+%\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[mathscr]{eucal}
+
+% Allow equations to break over pages...
+\interdisplaylinepenalty=2500
+% Command to stop equation breaks
+% Note: enclose this in braces when used...
+\newcommand{\donotsplitoverpages}{\interdisplaylinepenalty=10000}
+
+% Graphics
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+\fi
+
+% Enable IEEE macros
+\usepackage{IEEEtrantools}
+
+% Use a plain bibliography style
+%\bibliographystyle{plain}
+% Use the IEEE bibliography style (sorted)
+\bibliographystyle{IEEEtrans}
+% Use the IEEE bibliography style (unsorted; order of reference)
+%\bibliographystyle{IEEEtran}
+
+% For isolated bibliographies
+\usepackage{bibunits}
+
+\usepackage{color}
+\usepackage[noadjust]{cite}
+\usepackage{caption}
+
+% For cool tables
+\usepackage{array}
+
+% For subfigures
+\usepackage{subfig}
+%\usepackage{subfigure}
+
+% For algorithms
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% For cases
+\usepackage{sublabel}
+
+% For theroem numbers having the chapter included
+\usepackage{style/chngcntr}
+
+% For cool theorem styles
+%\usepackage[amsthm]{ntheorem}
+%\theorembodyfont{\normalfont}
+
+% Theorem definition
+\newtheorem{theorem}{Theorem}
+\counterwithin{theorem}{chapter}
+
+% Corollary definition
+\newtheorem{corollary}{Corollary}
+\counterwithin{corollary}{chapter}
+
+% Result definition
+\newtheorem{result}{Result}
+\counterwithin{result}{chapter}
+
+% Lemma definition
+\newtheorem{lemma}{Lemma}
+\counterwithin{lemma}{chapter}
+
+% Proposition definition
+\newtheorem{proposition}{Proposition}
+\counterwithin{proposition}{chapter}
+
+% Definition definition!
+\newtheorem{definition}{Definition}
+\counterwithin{definition}{chapter}
+
+% Remark definition (no counter?)
+\newenvironment{remark}{\emph{Remark:~}}{}
+
+% Fact definition (no counter?)
+\newenvironment{fact}{\emph{Fact:~}}{}
+
+% (Re)Set the figure path
+\newcommand{\setfigurepath}[1]{%
+\ifx\figurepath\undefined
+	\newcommand{\figurepath}{#1}
+\else
+	\renewcommand{\figurepath}{#1}
+\fi%
+}
+
+% Used in the continued list environment below
+\newcounter{continuedlist}
+
+% Continued list environment
+\newenvironment{continuedlist}{%
+	\begin{enumerate}%
+		% Space out each item
+		\setlength{\itemsep}{1.25em}%
+		% Start the enumeration from the previous value
+		\setcounter{enumi}{\value{continuedlist}} 
+}{%
+		% Save the counter to continue it later
+		\setcounter{continuedlist}{\value{enumi}}%
+	\end{enumerate}%
+	%\vspace{1.25em}%
+	\vspace{1em}%
+}
+
+% Spaced out list environment
+\newenvironment{spacedoutlist}{%
+	\begin{itemize}%
+		% Space out each item
+		\setlength{\itemsep}{1.25em}%
+}{%
+	\end{itemize}%
+}
+
