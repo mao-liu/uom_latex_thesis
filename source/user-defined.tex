@@ -21,6 +21,13 @@
 % for URLs
 \usepackage{url}
 
+\usepackage[numbers,sort&compress,sectionbib,square]{natbib}
+\usepackage{chapterbib}
+\newcommand{\mybib}[1]{
+    \bibliographystyle{plainnat}
+    \bibliography{#1}
+}
+
 \usepackage[linktoc=all]{hyperref}
 \hypersetup{
     colorlinks,
@@ -65,19 +72,14 @@
 \usepackage{IEEEtrantools}
 \newcommand{\PARstart}[2]{\IEEEPARstart{#1}{#2}}
 
-% Use a plain bibliography style
-%\bibliographystyle{plain}
-% Use the IEEE bibliography style (sorted)
-\bibliographystyle{IEEEtrans}
-% Use the IEEE bibliography style (unsorted; order of reference)
-%\bibliographystyle{IEEEtran}
-
-% For isolated bibliographies
-\usepackage{bibunits}
+\usepackage{lettrine}
+\renewcommand{\LettrineFontHook}{\fontfamily{ppl}}
+\setcounter{DefaultLines}{3}
+\setlength{\DefaultNindent}{0em}
 
 \usepackage{color}
 \usepackage{xcolor}
-\usepackage[noadjust]{cite}
+%\usepackage[noadjust]{cite}
 \usepackage{caption}
 
 % For cool tables
@@ -137,9 +139,9 @@
 % (Re)Set the figure path
 \newcommand{\setfigurepath}[1]{%
 \ifx\figurepath\undefined
-	\newcommand{\figurepath}{#1}
+  \newcommand{\figurepath}{#1}
 \else
-	\renewcommand{\figurepath}{#1}
+  \renewcommand{\figurepath}{#1}
 \fi%
 }
 
@@ -148,26 +150,26 @@
 
 % Continued list environment
 \newenvironment{continuedlist}{%
-	\begin{enumerate}%
-		% Space out each item
-		\setlength{\itemsep}{1.25em}%
-		% Start the enumeration from the previous value
-		\setcounter{enumi}{\value{continuedlist}} 
+  \begin{enumerate}%
+    % Space out each item
+    \setlength{\itemsep}{1.25em}%
+    % Start the enumeration from the previous value
+    \setcounter{enumi}{\value{continuedlist}} 
 }{%
-		% Save the counter to continue it later
-		\setcounter{continuedlist}{\value{enumi}}%
-	\end{enumerate}%
-	%\vspace{1.25em}%
-	\vspace{1em}%
+    % Save the counter to continue it later
+    \setcounter{continuedlist}{\value{enumi}}%
+  \end{enumerate}%
+  %\vspace{1.25em}%
+  \vspace{1em}%
 }
 
 % Spaced out list environment
 \newenvironment{spacedoutlist}{%
-	\begin{itemize}%
-		% Space out each item
-		\setlength{\itemsep}{1.25em}%
+  \begin{itemize}%
+    % Space out each item
+    \setlength{\itemsep}{1.25em}%
 }{%
-	\end{itemize}%
+  \end{itemize}%
 }
 
 % Suppress "This page intentionally left blank."

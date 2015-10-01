@@ -1,9 +1,3 @@
-%%
-%% VERSION HISTORY
-%%    22 May 2006 - John Papandriopoulos - Original version
-%%    12 Jul 2007 - John Papandriopoulos - Converted into template
-%%
-
 \documentclass[11pt,a4paper,titlepage,twoside,openright]{book}
 
 % Use the UniMelb Dissertation Template
@@ -24,89 +18,89 @@
 
 \begin{document}
 
-	%%
-	%% Front matter
-	%%
-	\begin{frontmatter}
+  %%
+  %% Front matter
+  %%
+  \begin{frontmatter}
 
-		\frontmatterheadings
+    \frontmatterheadings
 
-		% Collect the dissertation information for the title page
-		\input{metadata}
-		% Generate the title page
-		\maketitle
+    % Collect the dissertation information for the title page
+    \input{metadata}
+    % Generate the title page
+    \maketitle
 
-		\input{abstract}
+    \input{abstract}
 
-		% Author declaration
-		\makedeclaration
+    % Author declaration
+    \makedeclaration
 
-		% Acknowledgements
-		\input{acknowledgements}
+    % Acknowledgements
+    \input{acknowledgements}
 
-		% Preface
-		%\input{preface}
+    % Preface
+    %\input{preface}
 
-		% Dedications...
-		\input{dedication}
+    % Dedications...
+    \input{dedication}
 
-		% TOC, LOF, LOT
-		{%
-			\singlespacing%
-			\tableofcontents%
-			\listoffigures%
-			% Do not include a list of tables if you have less
-			% than 10 tables, as per SGS suggestion.
-			\listoftables%
-		   \clearpage%
-		}%
+    % TOC, LOF, LOT
+    {%
+      \singlespacing%
+      \tableofcontents%
+      \listoffigures%
+      % Do not include a list of tables if you have less
+      % than 10 tables, as per SGS suggestion.
+      \listoftables%
+       \clearpage%
+    }%
 
    \end{frontmatter}
 
-	%%
-	%% Main matter
-	%%
-	\begin{mainmatter}
+  %%
+  %% Main matter
+  %%
+  \begin{mainmatter}
 
-		\mainmatterheadings
+    \mainmatterheadings
 
-		\input{chapter-1}
-    \input{chapter-2}
-    \input{chapter-3}
-    \input{chapter-4}
-    \input{chapter-5}
-    \input{chapter-6}
+    \include{chapter-1}
+    \include{chapter-2}
+    \include{chapter-3}
+    \include{chapter-4}
+    \include{chapter-5}
+    \include{chapter-6}
 
-	\end{mainmatter}
+  \end{mainmatter}
 
-	%%
-	%% Appendix
-	%%
-	\begin{appendix}
+  %%
+  %% Appendix
+  %%
+  \begin{appendix}
 
-		\input{appendix}
+    \input{appendix}
 
-	\end{appendix}
+  \end{appendix}
 
-	%%
-	%% Bibliography
-	%%
-	\begin{backmatter}
+  %%
+  %% Bibliography
+  %%
+  \begin{backmatter}
 
-		\chapter*{\bibname}%
-		\markboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-		%
-		% Uncomment the following line to produce a
-		% bibliography list of all entries in the bib database
-		%\nocite{*}
-		%
-		\bibliography{%
-			% Place your bib database files here, for example:
-			%bib/strings,%
-			%bib/wireless,%
-			%bib/dsl,%
-			%bib/selfpubs%
-		}
-	\end{backmatter}
+    %\chapter*{\bibname}%
+    %\markboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+    %%
+    %% Uncomment the following line to produce a
+    %% bibliography list of all entries in the bib database
+    %%\nocite{*}
+    %%
+    %\bibliography{%
+    %  % Place your bib database files here, for example:
+    %  %bib/strings,%
+    %  %bib/wireless,%
+    %  %bib/dsl,%
+    %  %bib/selfpubs%
+    %}
+  \end{backmatter}
 
 \end{document}
