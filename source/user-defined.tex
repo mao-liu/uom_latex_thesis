@@ -2,6 +2,7 @@
 %% VERSION HISTORY
 %%    22 May 2006 - John Papandriopoulos - Original version
 %%    12 Jul 2007 - John Papandriopoulos - Converted into template
+%%    30 Sep 2015 - Maoyuan Liu - Draft version
 %%
 
 %%
@@ -17,10 +18,17 @@
 %%   own custom commands, packages, etc.
 %%
 
-%error 'You should modify this section and remove this error.'
-
 % for URLs
 \usepackage{url}
+
+\usepackage[linktoc=all]{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
 
 % AMS packages
 %\usepackage{amsfonts}
@@ -36,14 +44,26 @@
 \newcommand{\donotsplitoverpages}{\interdisplaylinepenalty=10000}
 
 % Graphics
-\ifx\pdftexversion\undefined
-  \usepackage[dvips]{graphicx}
-\else
-  \usepackage[pdftex]{graphicx}
-\fi
+%\ifx\pdftexversion\undefined
+%  \usepackage[dvips]{graphicx}
+%\else
+%  \usepackage[pdftex]{graphicx}
+%\fi
+\usepackage{graphicx}
+
+% set page margins
+\newcommand{\setoddmargin}[1]{\oddsidemargin \paperwidth
+  \addtolength{\oddsidemargin}{-\textwidth}
+  \addtolength{\oddsidemargin}{-#1}
+  \addtolength{\oddsidemargin}{-1in}}
+\newcommand{\setevenmargin}[1]{\evensidemargin \paperwidth
+  \addtolength{\evensidemargin}{-\textwidth}
+  \addtolength{\evensidemargin}{-#1}
+  \addtolength{\evensidemargin}{-1in}}
 
 % Enable IEEE macros
 \usepackage{IEEEtrantools}
+\newcommand{\PARstart}[2]{\IEEEPARstart{#1}{#2}}
 
 % Use a plain bibliography style
 %\bibliographystyle{plain}
@@ -56,6 +76,7 @@
 \usepackage{bibunits}
 
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage[noadjust]{cite}
 \usepackage{caption}
 
@@ -75,6 +96,9 @@
 
 % For theroem numbers having the chapter included
 \usepackage{style/chngcntr}
+
+% For testing the formatting
+\usepackage{lipsum}
 
 % For cool theorem styles
 %\usepackage[amsthm]{ntheorem}
@@ -146,3 +170,23 @@
 	\end{itemize}%
 }
 
+% Suppress "This page intentionally left blank."
+\newcommand{\markblankpages}{}
+
+% Commands for printing draft
+\usepackage{background}
+\usepackage[yyyymmdd,hhmmss]{datetime}
+\newcommand\DraftText{Draft compiled on \today\ at \currenttime}
+\newcommand{\draft}{
+  \setoddmargin{3cm}
+  \setevenmargin{3cm}
+  \backgroundsetup{
+    color=lightgray,
+    position=current page.center,
+    angle=90,
+    vshift=0.45\paperwidth,
+    opacity=1,
+    scale=1,
+    contents={\LARGE\ttfamily\DraftText}
+  }
+}

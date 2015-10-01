@@ -9,18 +9,18 @@
 % Use the UniMelb Dissertation Template
 \usepackage{style/uomthesis}
 
-% For drafts uncomment the following line
-%\usepackage[light,timestamp,first]{draftcopy}
-
-% Comment out the following line TO MARK blank pages with the 
-% text "This page intentionally left blank."
-\newcommand{\markblankpages}{}
-
-% Comment out the following line for the copy submitted to the library
-\newcommand{\archivalpapernote}{}
-
 % User defined commands
 \input{user-defined}
+
+% suppress "Produced on archival quality paper." on the title page
+\newcommand{\archivalpapernote}{}
+
+% set draft watermark
+\draft
+
+% set margins to be even
+%\setoddmargin{3cm}
+%\setevenmargin{3cm}
 
 \begin{document}
 
@@ -45,7 +45,7 @@
 		\input{acknowledgements}
 
 		% Preface
-		\input{preface}
+		%\input{preface}
 
 		% Dedications...
 		\input{dedication}
@@ -70,23 +70,12 @@
 
 		\mainmatterheadings
 
-		% Introduction
 		\input{chapter-1}
-
-		\input{part-1}
-
-			\input{chapter-2}
-			\input{chapter-3}
-			\input{chapter-4}
-
-		\input{part-2}
-	   
-			\input{chapter-5}
-			\input{chapter-6}
-			\input{chapter-7}
-
-		% Conclusion
-	   \input{chapter-8}
+    \input{chapter-2}
+    \input{chapter-3}
+    \input{chapter-4}
+    \input{chapter-5}
+    \input{chapter-6}
 
 	\end{mainmatter}
 
@@ -121,4 +110,3 @@
 	\end{backmatter}
 
 \end{document}
-%... and of four years work! :-)
