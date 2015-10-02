@@ -1,9 +1,10 @@
-.PHONY: all clean manuscript.pdf
+.PHONY: all clean main
 
-all: manuscript.pdf
+#all: main.pdf
 
 clean:
 	latexmk -CA
 
-manuscript.pdf: manuscript.tex
+main: main.tex
 	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make $<
+	cp $@.pdf $@-view.pdf
