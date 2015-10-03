@@ -18,7 +18,9 @@ clean:
 	@for d in $(CLEAN_DIRS); do\
 		cd $$d; pwd; latexmk -c -silent; cd $(ROOT_DIRECTORY);\
 	done
-	rm *-view.pdf
+
+veryclean: clean
+	@rm -vf *-view.pdf
 
 all: main
 
@@ -40,7 +42,7 @@ $(CHAPTERS): %: chapters/%.tex
 $(CHAPTER_RELEASE): %-release: %
 	cp $<-view.pdf ../out-drafts/$<_-_$(TIMESTAMP).pdf
 
-.PHONY: clean all main chapters release $(ROOT_TEX)
+.PHONY: clean veryclean all main chapters release $(ROOT_TEX)
 
 #---
 # catch all 
