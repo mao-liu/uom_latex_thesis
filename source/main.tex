@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,titlepage,twoside,openright]{book}
+\documentclass[12pt,a4paper,titlepage,twoside,openright]{book}
 
 % Use the UniMelb Dissertation Template
 \usepackage{style/uomthesis}
@@ -76,11 +76,13 @@
         \frontmatterheadings
 
         \glsaddall
-        \printglossary[title=Definition of Terms and Acronyms,toctitle=Definition of Terms and Acronyms]
+        \printglossary[title=Definition of Symbols and Acronyms]
 
         \clearpage
         \addcontentsline{toc}{chapter}{Index}
         \printindex
+
+        \include{backmatter/colophon}
 
     \end{backmatter}
 

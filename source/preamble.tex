@@ -5,30 +5,34 @@
 %%    30 Sep 2015 - Maoyuan Liu - Draft version
 %%
 
-%%
-%% Custom Hyphenations
-%%
+% -----
+% Basic
+% -----
 
-\hyphenation{cross-talk}
+% AMS packages
+%\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[mathscr]{eucal}
 
-%%
-%% Sample custom-configuration
-%%
-%%   You are encouraged to modify the following section with any of your
-%%   own custom commands, packages, etc.
-%%
+\usepackage{color}
+\usepackage{xcolor}
 
-% for URLs
+% Graphics
+\usepackage{graphicx}
+\usepackage{float}
+%\usepackage{caption}
+
+% For subfigures
+%\usepackage{subfig}
+%\usepackage{subfigure}
+
+
+% --------------------
+% Lists and references
+% --------------------
 \usepackage{url}
-
-\usepackage[numbers,sort&compress,sectionbib,square]{natbib}
-\usepackage{chapterbib}
-\newcommand{\mybib}[1]{
-    \clearpage
-    \bibliographystyle{plainnat}
-    \bibliography{#1}
-}
-
 \usepackage[linktoc=all]{hyperref}
 \hypersetup{
     colorlinks,
@@ -38,37 +42,31 @@
     urlcolor=black
 }
 
-% AMS packages
-%\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage[mathscr]{eucal}
+% bibliography at the end of every chapter
+\usepackage[numbers,sort&compress,sectionbib,square]{natbib}
+\usepackage{chapterbib}
+% call \mybib{file} at the end of a chapter to print bibliography
+\newcommand{\mybib}[1]{
+    \clearpage
+    \bibliographystyle{plainnat}
+    \bibliography{#1}
+}
 
-% Allow equations to break over pages...
-\interdisplaylinepenalty=2500
-% Command to stop equation breaks
-% Note: enclose this in braces when used...
-\newcommand{\donotsplitoverpages}{\interdisplaylinepenalty=10000}
-
+% List of index
 \usepackage{makeidx}
 \makeindex
 
+% Glossary --> defitions of symbols and acronyms
 \usepackage[toc,nonumberlist,nopostdot]{glossaries}
 \makeglossaries
 \setglossarystyle{treegroup}
-\newcommand*{\newdualentry}[5][]{%
-  \newglossaryentry{main-#2}{name={#4},%
-  text={#3\glsadd{#2}},%
-  description={#5},%
-  #1
-  }%
-  \newacronym{#2}{#3\glsadd{main-#2}}{#4}%
-}
 
-% Graphics
-\usepackage{graphicx}
-\usepackage{float}
+% ------
+% Layout
+% ------
+
+% Suppress "This page intentionally left blank."
+\newcommand{\markblankpages}{}
 
 % set page margins
 %   these margins are set by the A4 paper ratios, 1:sqrt(2)
@@ -83,6 +81,7 @@
 }
 
 % we've already gone this far, why not go the whole mile
+% set the text spacing 
 \setstretch{1.414}
 
 % packages to show page margins
@@ -99,74 +98,21 @@
 \usepackage{lipsum}
 
 
-% Drop caps
+% ---------
+% Eye candy
+% ---------
+\RequirePackage[labelfont={bf,singlespacing},
+                textfont={singlespacing},
+                justification={justified,RaggedRight},
+                singlelinecheck=false,
+                margin=0pt,
+                figurewithin=chapter,
+                tablewithin=chapter]{caption}
 
-% using IEEEtrantools
-%\usepackage{IEEEtrantools}
-%\newcommand{\PARstart}[2]{\IEEEPARstart{#1}{#2}}
+% fancy chapter titles and quotes at beginning of title
+\usepackage[helvetica]{quotchap} 
 
-% using lettrine (more customizable)
-%\usepackage{lettrine}
-%\renewcommand{\LettrineFontHook}{\fontfamily{ppl}}
-%\setcounter{DefaultLines}{3}
-%\setlength{\DefaultNindent}{0em}
-
-\usepackage{color}
-\usepackage{xcolor}
-\usepackage{caption}
-
-% For cool tables
-\usepackage{array}
-
-% For subfigures
-%\usepackage{subfig}
-%\usepackage{subfigure}
-
-% For algorithms
-%\usepackage{algorithm}
-%\usepackage{algorithmic}
-
-% For cases
-%\usepackage{sublabel}
-
-% For theroem numbers having the chapter included
-%\usepackage{style/chngcntr}
-
-% For cool theorem styles
-%\usepackage[amsthm]{ntheorem}
-%\theorembodyfont{\normalfont}
-
-% Used in the continued list environment below
-\newcounter{continuedlist}
-
-% Continued list environment
-\newenvironment{continuedlist}{%
-  \begin{enumerate}%
-    % Space out each item
-    \setlength{\itemsep}{1.25em}%
-    % Start the enumeration from the previous value
-    \setcounter{enumi}{\value{continuedlist}} 
-}{%
-    % Save the counter to continue it later
-    \setcounter{continuedlist}{\value{enumi}}%
-  \end{enumerate}%
-  %\vspace{1.25em}%
-  \vspace{1em}%
-}
-
-% Spaced out list environment
-\newenvironment{spacedoutlist}{%
-  \begin{itemize}%
-    % Space out each item
-    \setlength{\itemsep}{1.25em}%
-}{%
-  \end{itemize}%
-}
-
-% Suppress "This page intentionally left blank."
-\newcommand{\markblankpages}{}
-
-% Commands for printing draft
+% Draft watermark
 \usepackage[contents={}]{background}
 \usepackage[yyyymmdd,hhmmss]{datetime}
 \newcommand\DraftText{Draft compiled on \today\ at \currenttime}
@@ -182,3 +128,64 @@
     contents={\LARGE\ttfamily\DraftText}
   }
 }
+
+% Drop caps
+%   - using IEEEtrantools
+%   - using lettrine (more customizable)
+%
+%%\usepackage{IEEEtrantools}
+%%\newcommand{\PARstart}[2]{\IEEEPARstart{#1}{#2}}
+%%
+%%\usepackage{lettrine}
+%%\renewcommand{\LettrineFontHook}{\fontfamily{ppl}}
+%%\setcounter{DefaultLines}{3}
+%%\setlength{\DefaultNindent}{0em}
+
+% -----------
+% Recycle bin
+% -----------
+% Some of these may be useful at some point... not using these now though
+% 
+% Allow equations to break over pages...
+%\interdisplaylinepenalty=2500
+% Command to stop equation breaks
+% Note: enclose this in braces when used...
+%\newcommand{\donotsplitoverpages}{\interdisplaylinepenalty=10000}
+
+% For cases
+%\usepackage{sublabel}
+
+% For theroem numbers having the chapter included
+%\usepackage{style/chngcntr}
+
+% For cool theorem styles
+%\usepackage[amsthm]{ntheorem}
+%\theorembodyfont{\normalfont}
+
+% Used in the continued list environment below
+%\newcounter{continuedlist}
+%
+%% Continued list environment
+%\newenvironment{continuedlist}{%
+%  \begin{enumerate}%
+%    % Space out each item
+%    \setlength{\itemsep}{1.25em}%
+%    % Start the enumeration from the previous value
+%    \setcounter{enumi}{\value{continuedlist}} 
+%}{%
+%    % Save the counter to continue it later
+%    \setcounter{continuedlist}{\value{enumi}}%
+%  \end{enumerate}%
+%  %\vspace{1.25em}%
+%  \vspace{1em}%
+%}
+
+% Spaced out list environment
+%\newenvironment{spacedoutlist}{%
+%  \begin{itemize}%
+%    % Space out each item
+%    \setlength{\itemsep}{1.25em}%
+%}{%
+%  \end{itemize}%
+%}
+
