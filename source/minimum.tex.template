@@ -4,7 +4,7 @@
 \usepackage{style/uomthesis}
 
 % User defined commands
-\input{user-defined}
+\input{preamble}
 
 % set draft watermark
 \draft
