@@ -6,15 +6,8 @@
 % User defined commands
 \input{preamble}
 
-% suppress "Produced on archival quality paper." on the title page
-\newcommand{\archivalpapernote}{}
-
 % set draft watermark
 \draft
-
-% set margins to be even
-%\setoddmargin{3cm}
-%\setevenmargin{3cm}
 
 \begin{document}
 
@@ -26,11 +19,14 @@
         \frontmatterheadings
 
         \input{frontmatter/metadata.tex}
+
+        % the title page is centered horizontally
+        \symmetricmargin
         \maketitle
+        \bookmargin
 
         \input{frontmatter/abstract.tex}
         \makedeclaration
-
         \input{frontmatter/acknowledgements.tex}
         \input{frontmatter/dedication.tex}
 
@@ -40,7 +36,7 @@
             \listoftables
         \clearpage}
 
-     \end{frontmatter}
+    \end{frontmatter}
 
     %%
     %% Main matter

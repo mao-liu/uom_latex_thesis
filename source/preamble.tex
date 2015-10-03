@@ -56,19 +56,38 @@
 \usepackage{float}
 
 % set page margins
-\newcommand{\setoddmargin}[1]{\oddsidemargin \paperwidth
-  \addtolength{\oddsidemargin}{-\textwidth}
-  \addtolength{\oddsidemargin}{-#1}
-  \addtolength{\oddsidemargin}{-1in}}
-\newcommand{\setevenmargin}[1]{\evensidemargin \paperwidth
-  \addtolength{\evensidemargin}{-\textwidth}
-  \addtolength{\evensidemargin}{-#1}
-  \addtolength{\evensidemargin}{-1in}}
+%   these margins are set by the A4 paper ratios, 1:sqrt(2)
+%   paperheight/paperwidth = paperwidth/textwidth = paperheight/textheight = sqrt(2)
+%   outer/inner = bottom/top = sqrt(2)
+\usepackage[outer=36.02988mm,inner=25.47697mm,top=36.0317mm,bottom=50.9565mm]{geometry}
+\newcommand{\symmetricmargin}{
+    \newgeometry{outer=30.7534mm,inner=30.7534mm,top=36.0317mm,bottom=50.9565mm}
+}
+\newcommand{\bookmargin}{
+    \newgeometry{outer=36.02988mm,inner=25.47697mm,top=36.0317mm,bottom=50.9565mm}
+}
 
-% Enable IEEE macros
+% packages to show page margins
+%\usepackage{showframe}
+%\usepackage{layouts}
+\newcommand{\printlayouts}{
+  % printing numeric page margins
+  \printinunitsof{mm}{\pagevalues}
+  \verb|\marginparwidth|: \printinunitsof{mm}\prntlen{\marginparwidth}
+  \clearpage
+}
+
+% For testing the formatting
+\usepackage{lipsum}
+
+
+% Drop caps
+
+% using IEEEtrantools
 %\usepackage{IEEEtrantools}
 %\newcommand{\PARstart}[2]{\IEEEPARstart{#1}{#2}}
 
+% using lettrine (more customizable)
 %\usepackage{lettrine}
 %\renewcommand{\LettrineFontHook}{\fontfamily{ppl}}
 %\setcounter{DefaultLines}{3}
@@ -76,28 +95,24 @@
 
 \usepackage{color}
 \usepackage{xcolor}
-%\usepackage[noadjust]{cite}
 \usepackage{caption}
 
 % For cool tables
 \usepackage{array}
 
 % For subfigures
-\usepackage{subfig}
+%\usepackage{subfig}
 %\usepackage{subfigure}
 
 % For algorithms
-\usepackage{algorithm}
-\usepackage{algorithmic}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
 
 % For cases
-\usepackage{sublabel}
+%\usepackage{sublabel}
 
 % For theroem numbers having the chapter included
-\usepackage{style/chngcntr}
-
-% For testing the formatting
-\usepackage{lipsum}
+%\usepackage{style/chngcntr}
 
 % For cool theorem styles
 %\usepackage[amsthm]{ntheorem}
@@ -134,12 +149,11 @@
 \newcommand{\markblankpages}{}
 
 % Commands for printing draft
-\usepackage{background}
+\usepackage[contents={}]{background}
 \usepackage[yyyymmdd,hhmmss]{datetime}
 \newcommand\DraftText{Draft compiled on \today\ at \currenttime}
 \newcommand{\draft}{
-  \setoddmargin{3cm}
-  \setevenmargin{3cm}
+  \newcommand{\archivalpapernote}{}
   \backgroundsetup{
     color=lightgray,
     position=current page.center,

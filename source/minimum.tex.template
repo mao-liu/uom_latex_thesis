@@ -6,6 +6,7 @@
 % User defined commands
 \input{preamble}
 
+% suppress chapter numbering
 \usepackage{titlesec}
 \titleformat{\chapter}
   {\Large\bfseries} % format
@@ -16,8 +17,14 @@
 % set draft watermark
 \draft
 
-\begin{document}
+% set symmetric margins
+\symmetricmargin
 
+% packages to play with the layout
+%\usepackage{showframe}
+%\usepackage{layouts}
+
+\begin{document}
   \begin{mainmatter}
 
     \mainmatterheadings
@@ -25,5 +32,4 @@
     \include{@file}
 
   \end{mainmatter}
-
 \end{document}
