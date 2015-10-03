@@ -32,7 +32,13 @@
 
         {\singlespacing
             \tableofcontents
+
+            \clearpage
+            \addcontentsline{toc}{chapter}{List of Figures}
             \listoffigures
+
+            \clearpage
+            \addcontentsline{toc}{chapter}{List of Tables}
             \listoftables
         \clearpage}
 
@@ -67,9 +73,14 @@
     %% Bibliography
     %%
     \begin{backmatter}
+        \frontmatterheadings
 
-        % indices?
-        % glossary?
+        \glsaddall
+        \printglossary[title=Definition of Terms and Acronyms,toctitle=Definition of Terms and Acronyms]
+
+        \clearpage
+        \addcontentsline{toc}{chapter}{Index}
+        \printindex
 
     \end{backmatter}
 

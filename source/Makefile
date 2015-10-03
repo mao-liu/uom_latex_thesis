@@ -34,7 +34,8 @@ release: main
 	cp $<-view.pdf ../out-drafts/all_-_$(TIMESTAMP).pdf
 
 $(ROOT_TEX):
-	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make -silent $@
+	rm -f *.glsdefs
+	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" $@
 
 $(CHAPTERS): %: chapters/%.tex
 	bash minimum.sh chapters/$@.tex

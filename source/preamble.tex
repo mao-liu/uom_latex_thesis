@@ -51,6 +51,21 @@
 % Note: enclose this in braces when used...
 \newcommand{\donotsplitoverpages}{\interdisplaylinepenalty=10000}
 
+\usepackage{makeidx}
+\makeindex
+
+\usepackage[toc,nonumberlist,nopostdot]{glossaries}
+\makeglossaries
+\setglossarystyle{treegroup}
+\newcommand*{\newdualentry}[5][]{%
+  \newglossaryentry{main-#2}{name={#4},%
+  text={#3\glsadd{#2}},%
+  description={#5},%
+  #1
+  }%
+  \newacronym{#2}{#3\glsadd{main-#2}}{#4}%
+}
+
 % Graphics
 \usepackage{graphicx}
 \usepackage{float}
@@ -66,6 +81,9 @@
 \newcommand{\bookmargin}{
     \newgeometry{outer=36.02988mm,inner=25.47697mm,top=36.0317mm,bottom=50.9565mm}
 }
+
+% we've already gone this far, why not go the whole mile
+\setstretch{1.414}
 
 % packages to show page margins
 %\usepackage{showframe}
