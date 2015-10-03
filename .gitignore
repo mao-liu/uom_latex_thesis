@@ -9,3 +9,4 @@
 *.out
 *.toc
 *-view.pdf
+.last_compile
