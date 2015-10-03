@@ -24,6 +24,7 @@
 \usepackage[numbers,sort&compress,sectionbib,square]{natbib}
 \usepackage{chapterbib}
 \newcommand{\mybib}[1]{
+    \clearpage
     \bibliographystyle{plainnat}
     \bibliography{#1}
 }
@@ -51,12 +52,8 @@
 \newcommand{\donotsplitoverpages}{\interdisplaylinepenalty=10000}
 
 % Graphics
-%\ifx\pdftexversion\undefined
-%  \usepackage[dvips]{graphicx}
-%\else
-%  \usepackage[pdftex]{graphicx}
-%\fi
 \usepackage{graphicx}
+\usepackage{float}
 
 % set page margins
 \newcommand{\setoddmargin}[1]{\oddsidemargin \paperwidth
@@ -69,13 +66,13 @@
   \addtolength{\evensidemargin}{-1in}}
 
 % Enable IEEE macros
-\usepackage{IEEEtrantools}
-\newcommand{\PARstart}[2]{\IEEEPARstart{#1}{#2}}
+%\usepackage{IEEEtrantools}
+%\newcommand{\PARstart}[2]{\IEEEPARstart{#1}{#2}}
 
-\usepackage{lettrine}
-\renewcommand{\LettrineFontHook}{\fontfamily{ppl}}
-\setcounter{DefaultLines}{3}
-\setlength{\DefaultNindent}{0em}
+%\usepackage{lettrine}
+%\renewcommand{\LettrineFontHook}{\fontfamily{ppl}}
+%\setcounter{DefaultLines}{3}
+%\setlength{\DefaultNindent}{0em}
 
 \usepackage{color}
 \usepackage{xcolor}
@@ -105,45 +102,6 @@
 % For cool theorem styles
 %\usepackage[amsthm]{ntheorem}
 %\theorembodyfont{\normalfont}
-
-% Theorem definition
-\newtheorem{theorem}{Theorem}
-\counterwithin{theorem}{chapter}
-
-% Corollary definition
-\newtheorem{corollary}{Corollary}
-\counterwithin{corollary}{chapter}
-
-% Result definition
-\newtheorem{result}{Result}
-\counterwithin{result}{chapter}
-
-% Lemma definition
-\newtheorem{lemma}{Lemma}
-\counterwithin{lemma}{chapter}
-
-% Proposition definition
-\newtheorem{proposition}{Proposition}
-\counterwithin{proposition}{chapter}
-
-% Definition definition!
-\newtheorem{definition}{Definition}
-\counterwithin{definition}{chapter}
-
-% Remark definition (no counter?)
-\newenvironment{remark}{\emph{Remark:~}}{}
-
-% Fact definition (no counter?)
-\newenvironment{fact}{\emph{Fact:~}}{}
-
-% (Re)Set the figure path
-\newcommand{\setfigurepath}[1]{%
-\ifx\figurepath\undefined
-  \newcommand{\figurepath}{#1}
-\else
-  \renewcommand{\figurepath}{#1}
-\fi%
-}
 
 % Used in the continued list environment below
 \newcounter{continuedlist}

@@ -1,0 +1,20 @@
+\documentclass[11pt,a4paper,titlepage,oneside,openright]{book}
+
+% Use the UniMelb Dissertation Template
+\usepackage{style/uomthesis}
+
+% User defined commands
+\input{user-defined}
+
+% set draft watermark
+\draft
+
+\begin{document}
+
+  \begin{mainmatter}
+
+    \include{@file}
+
+  \end{mainmatter}
+
+\end{document}

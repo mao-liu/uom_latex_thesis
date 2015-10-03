@@ -18,89 +18,63 @@
 
 \begin{document}
 
-  %%
-  %% Front matter
-  %%
-  \begin{frontmatter}
-
-    \frontmatterheadings
-
-    % Collect the dissertation information for the title page
-    \input{metadata}
-    % Generate the title page
-    \maketitle
-
-    \input{abstract}
-
-    % Author declaration
-    \makedeclaration
-
-    % Acknowledgements
-    \input{acknowledgements}
-
-    % Preface
-    %\input{preface}
-
-    % Dedications...
-    \input{dedication}
-
-    % TOC, LOF, LOT
-    {%
-      \singlespacing%
-      \tableofcontents%
-      \listoffigures%
-      % Do not include a list of tables if you have less
-      % than 10 tables, as per SGS suggestion.
-      \listoftables%
-       \clearpage%
-    }%
-
-   \end{frontmatter}
-
-  %%
-  %% Main matter
-  %%
-  \begin{mainmatter}
-
-    \mainmatterheadings
-
-    \include{chapter-1}
-    \include{chapter-2}
-    \include{chapter-3}
-    \include{chapter-4}
-    \include{chapter-5}
-    \include{chapter-6}
-
-  \end{mainmatter}
-
-  %%
-  %% Appendix
-  %%
-  \begin{appendix}
-
-    \input{appendix}
-
-  \end{appendix}
-
-  %%
-  %% Bibliography
-  %%
-  \begin{backmatter}
-
-    %\chapter*{\bibname}%
-    %\markboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
     %%
-    %% Uncomment the following line to produce a
-    %% bibliography list of all entries in the bib database
-    %%\nocite{*}
+    %% Front matter
     %%
-    %\bibliography{%
-    %  % Place your bib database files here, for example:
-    %  %bib/strings,%
-    %  %bib/wireless,%
-    %  %bib/dsl,%
-    %  %bib/selfpubs%
-    %}
-  \end{backmatter}
+    \begin{frontmatter}
+
+        \frontmatterheadings
+
+        \input{frontmatter/metadata.tex}
+        \maketitle
+
+        \input{frontmatter/abstract.tex}
+        \makedeclaration
+
+        \input{frontmatter/acknowledgements.tex}
+        \input{frontmatter/dedication.tex}
+
+        {\singlespacing
+            \tableofcontents
+            \listoffigures
+            \listoftables
+        \clearpage}
+
+     \end{frontmatter}
+
+    %%
+    %% Main matter
+    %%
+    \begin{mainmatter}
+
+        \mainmatterheadings
+
+        \include{chapters/chapter-1}
+        \include{chapters/chapter-2}
+        \include{chapters/chapter-3}
+        \include{chapters/chapter-4}
+        \include{chapters/chapter-5}
+        \include{chapters/chapter-6}
+
+    \end{mainmatter}
+
+    %%
+    %% Appendix
+    %%
+    \begin{appendix}
+
+        \include{backmatter/appendix}
+
+    \end{appendix}
+
+    %%
+    %% Bibliography
+    %%
+    \begin{backmatter}
+
+        % indices?
+        % glossary?
+
+    \end{backmatter}
 
 \end{document}
