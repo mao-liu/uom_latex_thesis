@@ -6,12 +6,21 @@
 % User defined commands
 \input{preamble}
 
+\usepackage{titlesec}
+\titleformat{\chapter}
+  {\Large\bfseries} % format
+  {}                % label
+  {0pt}             % sep
+  {\huge}           % before-code
+
 % set draft watermark
 \draft
 
 \begin{document}
 
   \begin{mainmatter}
+
+    \mainmatterheadings
 
     \include{@file}
 
