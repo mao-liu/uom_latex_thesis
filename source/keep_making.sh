@@ -1,7 +1,7 @@
 #!/bin/bash
 
 chapters_tex=`find chapters -name '*.tex'`
-all_tex=`find . -name '*.tex' | grep -v recycle_bin`
+all_tex=`find . -name '*.tex' -or -name '*.bib' | grep -v recycle_bin`
 
 if [[ $1 == "main" ]]; then
     echo "Automatically recompiling main-view.pdf"
