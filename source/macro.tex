@@ -2,7 +2,29 @@
 % Macros and useful commands
 % --------------------------
 
-\newcommand*\cleartoleftpage{%
-  \clearpage
-  \ifodd\value{page}\hbox{}\newpage\fi
+% call \mybib{file} at the end of a chapter to print bibliography
+\newcommand*\mybib[1]{
+    \bibliographystyle{plainnat}
+    \bibliography{#1}
+}
+
+\newcommand*\myglossaryentry[4]{
+    \index{#2@#1}
+    \newglossaryentry{#2}{name={#1}, description={#3}, sort={#2}, #4}
+}
+
+\newcommand*\myacronym[2]{
+    \index{#1}
+    \newacronym{#1}{#1}{#2}
+}
+
+% clear to the start of a right-hand page (top)
+\newcommand*\cleartorightpage{
+    \cleardoublepage
+}
+
+% clear to the start of a left-hand page (rev)
+\newcommand*\cleartoleftpage{
+    \clearpage
+    \ifodd\value{page}\hbox{}\newpage\fi
 }
