@@ -21,6 +21,7 @@ clean:
 
 veryclean: clean
 	@rm -vf *-view.pdf
+	@find . -name '*.bbl' | xargs rm -v
 
 all: main
 

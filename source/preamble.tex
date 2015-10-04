@@ -9,6 +9,8 @@
 % Basic
 % -----
 
+\usepackage{fixltx2e}
+
 % AMS packages
 %\usepackage{amsfonts}
 \usepackage{amssymb}
@@ -45,11 +47,6 @@
 % bibliography at the end of every chapter
 \usepackage[numbers,sort&compress,sectionbib,square]{natbib}
 \usepackage{chapterbib}
-% call \mybib{file} at the end of a chapter to print bibliography
-\newcommand{\mybib}[1]{
-    \bibliographystyle{plainnat}
-    \bibliography{#1}
-}
 
 % List of index
 \usepackage{makeidx}
@@ -65,17 +62,17 @@
 % ------
 
 % Suppress "This page intentionally left blank."
-\newcommand{\markblankpages}{}
+\newcommand*\markblankpages{}
 
 % set page margins
 %   these margins are set by the A4 paper ratios, 1:sqrt(2)
 %   paperheight/paperwidth = paperwidth/textwidth = paperheight/textheight = sqrt(2)
 %   outer/inner = bottom/top = sqrt(2)
 \usepackage[outer=36.02988mm,inner=25.47697mm,top=36.0317mm,bottom=50.9565mm]{geometry}
-\newcommand{\symmetricmargin}{
+\newcommand*\symmetricmargin{
     \newgeometry{outer=30.7534mm,inner=30.7534mm,top=36.0317mm,bottom=50.9565mm}
 }
-\newcommand{\bookmargin}{
+\newcommand*\bookmargin{
     \newgeometry{outer=36.02988mm,inner=25.47697mm,top=36.0317mm,bottom=50.9565mm}
 }
 
@@ -83,30 +80,19 @@
 % set the text spacing 
 \setstretch{1.414}
 
-% packages to show page margins
-%\usepackage{showframe}
-%\usepackage{layouts}
-\newcommand{\printlayouts}{
-  % printing numeric page margins
-  \printinunitsof{mm}{\pagevalues}
-  \verb|\marginparwidth|: \printinunitsof{mm}\prntlen{\marginparwidth}
-  \clearpage
-}
-
 % For testing the formatting
 \usepackage{lipsum}
-
 
 % ---------
 % Eye candy
 % ---------
-\RequirePackage[labelfont={bf,singlespacing},
-                textfont={singlespacing},
-                justification={justified,RaggedRight},
-                singlelinecheck=false,
-                margin=0pt,
-                figurewithin=chapter,
-                tablewithin=chapter]{caption}
+\usepackage[labelfont={bf,singlespacing},
+            textfont={singlespacing},
+            justification={justified,RaggedRight},
+            singlelinecheck=false,
+            margin=0pt,
+            figurewithin=chapter,
+            tablewithin=chapter]{caption}
 
 % fancy chapter titles and quotes at beginning of title
 \usepackage[helvetica]{quotchap} 
@@ -114,9 +100,9 @@
 % Draft watermark
 \usepackage[contents={}]{background}
 \usepackage[yyyymmdd,hhmmss]{datetime}
-\newcommand\DraftText{Draft compiled on \today\ at \currenttime}
-\newcommand{\draft}{
-  \newcommand{\archivalpapernote}{}
+\newcommand*\DraftText{Draft compiled on \today\ at \currenttime}
+\newcommand*\draft{
+  \newcommand*{\archivalpapernote}{}
   \backgroundsetup{
     color=lightgray,
     position=current page.center,
@@ -127,64 +113,3 @@
     contents={\LARGE\ttfamily\DraftText}
   }
 }
-
-% Drop caps
-%   - using IEEEtrantools
-%   - using lettrine (more customizable)
-%
-%%\usepackage{IEEEtrantools}
-%%\newcommand{\PARstart}[2]{\IEEEPARstart{#1}{#2}}
-%%
-%%\usepackage{lettrine}
-%%\renewcommand{\LettrineFontHook}{\fontfamily{ppl}}
-%%\setcounter{DefaultLines}{3}
-%%\setlength{\DefaultNindent}{0em}
-
-% -----------
-% Recycle bin
-% -----------
-% Some of these may be useful at some point... not using these now though
-% 
-% Allow equations to break over pages...
-%\interdisplaylinepenalty=2500
-% Command to stop equation breaks
-% Note: enclose this in braces when used...
-%\newcommand{\donotsplitoverpages}{\interdisplaylinepenalty=10000}
-
-% For cases
-%\usepackage{sublabel}
-
-% For theroem numbers having the chapter included
-%\usepackage{style/chngcntr}
-
-% For cool theorem styles
-%\usepackage[amsthm]{ntheorem}
-%\theorembodyfont{\normalfont}
-
-% Used in the continued list environment below
-%\newcounter{continuedlist}
-%
-%% Continued list environment
-%\newenvironment{continuedlist}{%
-%  \begin{enumerate}%
-%    % Space out each item
-%    \setlength{\itemsep}{1.25em}%
-%    % Start the enumeration from the previous value
-%    \setcounter{enumi}{\value{continuedlist}} 
-%}{%
-%    % Save the counter to continue it later
-%    \setcounter{continuedlist}{\value{enumi}}%
-%  \end{enumerate}%
-%  %\vspace{1.25em}%
-%  \vspace{1em}%
-%}
-
-% Spaced out list environment
-%\newenvironment{spacedoutlist}{%
-%  \begin{itemize}%
-%    % Space out each item
-%    \setlength{\itemsep}{1.25em}%
-%}{%
-%  \end{itemize}%
-%}
-
