@@ -1,0 +1,81 @@
+% -----------
+% Recycle bin
+% -----------
+% some code that may become useful, but not used right now
+
+% Glossary entries
+\newglossaryentry{lipsum}{name={lipsum}, description={Lorem Ipsum, a special type of fudge}}
+\newglossaryentry{dolor}{name={dolor}, description={No idea why}, parent={lipsum}}
+\newglossaryentry{ibit}{name={ibit}, description={Sounds right, doesn't it?}, parent={lipsum}}
+\newacronym{dft}{DFT}{density functional theory}
+\newglossaryentry{pi}{name={\ensuremath{\pi}}, description={Greek letter pi, \ensuremath{\Pi} does this work?},                       symbol={\ensuremath{\pi}}, sort=pi}
+
+% Index entries
+\index{a}
+
+% ---------
+% Drop Caps
+% ---------
+% using IEEEtrantools
+\usepackage{IEEEtrantools}
+\newcommand{\PARstart}[2]{\IEEEPARstart{#1}{#2}}
+%
+% using lettrine (more customizable)
+\usepackage{lettrine}
+\renewcommand{\LettrineFontHook}{\fontfamily{ppl}}
+\setcounter{DefaultLines}{3}
+\setlength{\DefaultNindent}{0em}
+
+% -------
+% Layouts
+% -------
+\usepackage{showframe}
+\usepackage{layouts}
+\newcommand{\printlayouts}{
+  % printing numeric page margins
+  \printinunitsof{mm}{\pagevalues}
+  \verb|\marginparwidth|: \printinunitsof{mm}\prntlen{\marginparwidth}
+  \clearpage
+}
+
+% Allow equations to break over pages...
+\interdisplaylinepenalty=2500
+% Command to stop equation breaks
+% Note: enclose this in braces when used...
+\newcommand{\donotsplitoverpages}{\interdisplaylinepenalty=10000}
+
+% For cases
+\usepackage{sublabel}
+
+% For theroem numbers having the chapter included
+\usepackage{style/chngcntr}
+
+% For cool theorem styles
+\usepackage[amsthm]{ntheorem}
+\theorembodyfont{\normalfont}
+
+% Used in the continued list environment below
+\newcounter{continuedlist}
+% Continued list environment
+\newenvironment{continuedlist}{%
+  \begin{enumerate}%
+    % Space out each item
+    \setlength{\itemsep}{1.25em}%
+    % Start the enumeration from the previous value
+    \setcounter{enumi}{\value{continuedlist}} 
+}{%
+    % Save the counter to continue it later
+    \setcounter{continuedlist}{\value{enumi}}%
+  \end{enumerate}%
+  %\vspace{1.25em}%
+  \vspace{1em}%
+}
+
+% Spaced out list environment
+\newenvironment{spacedoutlist}{%
+  \begin{itemize}%
+    % Space out each item
+    \setlength{\itemsep}{1.25em}%
+}{%
+  \end{itemize}%
+}

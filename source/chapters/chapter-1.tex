@@ -16,13 +16,16 @@ Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin moles
 
 \section{Introduction}
 
-\newglossaryentry{lipsum}{name={lipsum}, description={Lorem Ipsum, a special type of fudge}}
-\newglossaryentry{dolor}{name={dolor}, description={No idea why}, parent={lipsum}}
-\newglossaryentry{ibit}{name={ibit}, description={Sounds right, doesn't it?}, parent={lipsum}}
-\newacronym{dft}{DFT}{density functional theory}
-\newglossaryentry{pi}{name={\ensuremath{\pi}}, description={Greek letter pi, \ensuremath{\Pi} does this work?}, symbol={\ensuremath{\pi}}, sort=pi}
 \lipsum[1-6]\cite{Narten1967}
 \index{a}
+\myglossaryentry{lipsum}{lipsum}{Lorem Ipsum, a special type of fudge}{}
+\myglossaryentry{dolor}{dolor}{No idea why}{parent={lipsum}}
+\myglossaryentry{ibit}{ibit}{Sounds right, doesn't it?}{parent={lipsum}}
+\myacronym{DFT}{density functional theory}
+%\myglossaryentry{\ensuremath{\pi}}{pi}{Greek letter pi, \ensuremath{\Pi} does this work?}{symbol={\ensuremath{\pi}}, sort=pi}
+\myglossaryentry{$\pi$}{pi}{Greek letter pi, \ensuremath{\Pi} does this work?}{symbol={$\pi$}}
+\myacronym{RDF}{radial distribution function}
+\myglossaryentry{radial distribution function}{radialdistributionfunction}{}{symbol={$g(r)$}}
 
 \begin{figure}[h]
 \includegraphics[height=0.7\textheight]{a.pdf}
